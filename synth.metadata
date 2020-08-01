@@ -4,21 +4,14 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-org-policy.git",
-        "sha": "c5fbce5f0f05aa425c6c9fafc8263757da876c3c"
+        "sha": "8ca951559161e00421e4e6f05ac62ec6d1c781b0"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "303271797a360f8a439203413f13a160f2f5b3b4"
-      }
-    },
-    {
-      "git": {
-        "name": "synthtool",
-        "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "303271797a360f8a439203413f13a160f2f5b3b4"
+        "sha": "d2364eb80b840a36136c8ce12f1c6efabcc9600e"
       }
     }
   ]
