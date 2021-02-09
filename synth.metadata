@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-org-policy.git",
-        "sha": "b86ac3ad52e9214cce3c054874e05adc250abe0f"
+        "sha": "4d84b7d447467aca089cde1a231ca56776edf20d"
       }
     },
     {
