@@ -3,22 +3,41 @@
     {
       "git": {
         "name": ".",
-        "remote": "https://github.com/googleapis/python-org-policy.git",
-        "sha": "c5fbce5f0f05aa425c6c9fafc8263757da876c3c"
+        "remote": "git@github.com:googleapis/python-org-policy.git",
+        "sha": "4797e6d354848feb3b88f718c5e676929c9e4b5c"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "c06bbe28cc7287a55bf7926ee48da2565854de7f",
+        "internalRef": "359364666"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "bfcdbe0da977b2de6c1c0471bb6dc2f1e13bf669"
+        "sha": "79ab0b44a2cc7d803d07c107f9faf07729fc4012"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "bfcdbe0da977b2de6c1c0471bb6dc2f1e13bf669"
+        "sha": "79ab0b44a2cc7d803d07c107f9faf07729fc4012"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "orgpolicy",
+        "apiVersion": "v2",
+        "language": "python",
+        "generator": "bazel"
       }
     }
   ]
