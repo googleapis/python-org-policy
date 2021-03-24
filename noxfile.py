@@ -41,6 +41,9 @@ nox.options.sessions = [
     "docs",
 ]
 
+# Error if a python version is missing
+nox.options.error_on_missing_interpreters = True
+
 
 @nox.session(python="3.8")
 def generate_protos(session):
