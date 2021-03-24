@@ -4,15 +4,15 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-org-policy.git",
-        "sha": "e60fdecf3b90d1a8863f996abc23683937b2e5da"
+        "sha": "cb5881dac8121617fda5a4d9df9f70c80dcc8735"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "07932bb995e7dc91b43620ea8402c6668c7d102c",
-        "internalRef": "359562873"
+        "sha": "28a591963253d52ce3a25a918cafbdd9928de8cf",
+        "internalRef": "361662015"
       }
     },
     {
