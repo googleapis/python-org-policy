@@ -13,10 +13,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from .client import OrgPolicyClient
-from .async_client import OrgPolicyAsyncClient
-
-__all__ = (
-    'OrgPolicyClient',
-    'OrgPolicyAsyncClient',
-)
