@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/googleapis/python-org-policy/compare/v1.0.0...v1.0.1) (2021-07-20)
+
+
+### Bug Fixes
+
+* **deps:** pin 'google-{api,cloud}-core', 'google-auth' to allow 2.x versions ([#65](https://www.github.com/googleapis/python-org-policy/issues/65)) ([f486869](https://www.github.com/googleapis/python-org-policy/commit/f486869b2c232f2c4934dab8e25637a45f577f9b))
+
 ## [1.0.0](https://www.github.com/googleapis/python-org-policy/compare/v0.3.0...v1.0.0) (2021-07-01)
 
 
