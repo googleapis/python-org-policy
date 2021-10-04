@@ -10,6 +10,6 @@
     "repo": "googleapis/python-org-policy",
     "distribution_name": "google-cloud-org-policy",
     "api_id": "orgpolicy.googleapis.com",
-    "default_version": "",
+    "default_version": "v2",
     "codeowner_team": ""
 }
