@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.3](https://www.github.com/googleapis/python-org-policy/compare/v1.0.2...v1.0.3) (2021-10-05)
+
+
+### Bug Fixes
+
+* improper types in pagers generation ([3254812](https://www.github.com/googleapis/python-org-policy/commit/3254812ce2adeb32fe44536c3859c44756bd0c89))
+
 ### [1.0.2](https://www.github.com/googleapis/python-org-policy/compare/v1.0.1...v1.0.2) (2021-09-24)
 
 
