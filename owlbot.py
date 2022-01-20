@@ -41,15 +41,15 @@ s.remove_staging_dirs()
 #  Add templated files
 # ----------------------------------------------------------------------------
 
-# coverage is 98 to exclude orgpolicy/v1 code
-templated_files = common.py_library(microgenerator=True, cov_level=98)
+# coverage is 97 to exclude orgpolicy/v1 code
+templated_files = common.py_library(microgenerator=True, cov_level=97)
 
 s.move(
     templated_files, excludes=[".coveragerc",]
 )
 
 # Work around bug in templates https://github.com/googleapis/synthtool/pull/1335
-s.replace(".github/workflows/unittest.yml", "--fail-under=100", "--fail-under=98")
+s.replace(".github/workflows/unittest.yml", "--fail-under=100", "--fail-under=97")
 
 python.py_samples(skip_readmes=True)
 
