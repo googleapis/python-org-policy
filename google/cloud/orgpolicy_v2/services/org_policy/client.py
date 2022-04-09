@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -476,7 +476,7 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import orgpolicy_v2
+                    from google.cloud import orgpolicy_v2
 
             def sample_list_constraints():
                 # Create a client
@@ -594,7 +594,7 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import orgpolicy_v2
+                    from google.cloud import orgpolicy_v2
 
             def sample_list_policies():
                 # Create a client
@@ -717,7 +717,7 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import orgpolicy_v2
+                    from google.cloud import orgpolicy_v2
 
             def sample_get_policy():
                 # Create a client
@@ -818,7 +818,7 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import orgpolicy_v2
+                    from google.cloud import orgpolicy_v2
 
             def sample_get_effective_policy():
                 # Create a client
@@ -923,7 +923,7 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import orgpolicy_v2
+                    from google.cloud import orgpolicy_v2
 
             def sample_create_policy():
                 # Create a client
@@ -1042,7 +1042,7 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import orgpolicy_v2
+                    from google.cloud import orgpolicy_v2
 
             def sample_update_policy():
                 # Create a client
@@ -1143,7 +1143,7 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import orgpolicy_v2
+                    from google.cloud import orgpolicy_v2
 
             def sample_delete_policy():
                 # Create a client
