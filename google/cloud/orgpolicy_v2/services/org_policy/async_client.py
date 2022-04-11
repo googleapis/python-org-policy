@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -233,7 +233,6 @@ class OrgPolicyAsyncClient:
         r"""Lists ``Constraints`` that could be applied on the specified
         resource.
 
-
         .. code-block:: python
 
             from google.cloud import orgpolicy_v2
@@ -314,8 +313,7 @@ class OrgPolicyAsyncClient:
                 maximum=10.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
@@ -360,7 +358,6 @@ class OrgPolicyAsyncClient:
     ) -> pagers.ListPoliciesAsyncPager:
         r"""Retrieves all of the ``Policies`` that exist on a particular
         resource.
-
 
         .. code-block:: python
 
@@ -444,8 +441,7 @@ class OrgPolicyAsyncClient:
                 maximum=10.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
@@ -493,7 +489,6 @@ class OrgPolicyAsyncClient:
         If no ``Policy`` is set on the resource, NOT_FOUND is returned.
         The ``etag`` value can be used with ``UpdatePolicy()`` to update
         a ``Policy`` during read-modify-write.
-
 
         .. code-block:: python
 
@@ -563,8 +558,7 @@ class OrgPolicyAsyncClient:
                 maximum=10.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
@@ -604,7 +598,6 @@ class OrgPolicyAsyncClient:
         ``condition`` set because it is a computed ``Policy`` across
         multiple resources. Subtrees of Resource Manager resource
         hierarchy with 'under:' prefix will not be expanded.
-
 
         .. code-block:: python
 
@@ -676,8 +669,7 @@ class OrgPolicyAsyncClient:
                 maximum=10.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
@@ -719,7 +711,6 @@ class OrgPolicyAsyncClient:
         Returns a ``google.rpc.Status`` with
         ``google.rpc.Code.ALREADY_EXISTS`` if the policy already exists
         on the given Cloud resource.
-
 
         .. code-block:: python
 
@@ -803,8 +794,7 @@ class OrgPolicyAsyncClient:
                 maximum=10.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
@@ -848,7 +838,6 @@ class OrgPolicyAsyncClient:
 
         Note: the supplied policy will perform a full overwrite of all
         fields.
-
 
         .. code-block:: python
 
@@ -917,8 +906,7 @@ class OrgPolicyAsyncClient:
                 maximum=10.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
@@ -959,7 +947,6 @@ class OrgPolicyAsyncClient:
         Returns a ``google.rpc.Status`` with
         ``google.rpc.Code.NOT_FOUND`` if the constraint or Org Policy
         does not exist.
-
 
         .. code-block:: python
 
@@ -1022,8 +1009,7 @@ class OrgPolicyAsyncClient:
                 maximum=10.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
