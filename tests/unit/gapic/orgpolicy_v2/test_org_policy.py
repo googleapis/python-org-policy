@@ -2884,7 +2884,6 @@ def test_org_policy_transport_auth_adc(transport_class):
     [
         transports.OrgPolicyGrpcTransport,
         transports.OrgPolicyGrpcAsyncIOTransport,
-        transports.OrgPolicyRestTransport,
     ],
 )
 def test_org_policy_transport_auth_gdch_credentials(transport_class):
