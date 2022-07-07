@@ -3,7 +3,7 @@ Python Client for Organization Policy API
 
 |stable| |pypi| |versions|
 
-`Organization Policy API`_: 
+`Organization Policy API`_: The Organization Policy API allows users to configure governance rules on their GCP resources across the Cloud Resource Hierarchy.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
