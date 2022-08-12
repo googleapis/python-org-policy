@@ -352,6 +352,7 @@ def docfx(session):
         os.path.join("docs", "_build", "html", ""),
     )
 
+
 @nox.session(python=SYSTEM_TEST_PYTHON_VERSIONS)
 def prerelease_deps(session):
     """Run all tests with prerelease versions of dependencies installed."""
