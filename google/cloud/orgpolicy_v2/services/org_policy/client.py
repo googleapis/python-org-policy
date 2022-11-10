@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -56,7 +67,7 @@ class OrgPolicyClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[OrgPolicyTransport]:
         """Returns an appropriate transport class.
 
@@ -367,7 +378,7 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, OrgPolicyTransport, None] = None,
+        transport: Optional[Union[str, OrgPolicyTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -465,11 +476,11 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
     def list_constraints(
         self,
-        request: Union[orgpolicy.ListConstraintsRequest, dict] = None,
+        request: Optional[Union[orgpolicy.ListConstraintsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListConstraintsPager:
         r"""Lists ``Constraints`` that could be applied on the specified
@@ -589,11 +600,11 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
     def list_policies(
         self,
-        request: Union[orgpolicy.ListPoliciesRequest, dict] = None,
+        request: Optional[Union[orgpolicy.ListPoliciesRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListPoliciesPager:
         r"""Retrieves all of the ``Policies`` that exist on a particular
@@ -715,11 +726,11 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
     def get_policy(
         self,
-        request: Union[orgpolicy.GetPolicyRequest, dict] = None,
+        request: Optional[Union[orgpolicy.GetPolicyRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> orgpolicy.Policy:
         r"""Gets a ``Policy`` on a resource.
@@ -821,11 +832,11 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
     def get_effective_policy(
         self,
-        request: Union[orgpolicy.GetEffectivePolicyRequest, dict] = None,
+        request: Optional[Union[orgpolicy.GetEffectivePolicyRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> orgpolicy.Policy:
         r"""Gets the effective ``Policy`` on a resource. This is the result
@@ -930,12 +941,12 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
     def create_policy(
         self,
-        request: Union[orgpolicy.CreatePolicyRequest, dict] = None,
+        request: Optional[Union[orgpolicy.CreatePolicyRequest, dict]] = None,
         *,
-        parent: str = None,
-        policy: orgpolicy.Policy = None,
+        parent: Optional[str] = None,
+        policy: Optional[orgpolicy.Policy] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> orgpolicy.Policy:
         r"""Creates a Policy.
@@ -1053,11 +1064,11 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
     def update_policy(
         self,
-        request: Union[orgpolicy.UpdatePolicyRequest, dict] = None,
+        request: Optional[Union[orgpolicy.UpdatePolicyRequest, dict]] = None,
         *,
-        policy: orgpolicy.Policy = None,
+        policy: Optional[orgpolicy.Policy] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> orgpolicy.Policy:
         r"""Updates a Policy.
@@ -1165,11 +1176,11 @@ class OrgPolicyClient(metaclass=OrgPolicyClientMeta):
 
     def delete_policy(
         self,
-        request: Union[orgpolicy.DeletePolicyRequest, dict] = None,
+        request: Optional[Union[orgpolicy.DeletePolicyRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes a Policy.
