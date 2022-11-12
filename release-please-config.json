@@ -9,6 +9,11 @@
           "type": "json",
           "path": "samples/generated_samples/snippet_metadata_orgpolicy_v2.json",
           "jsonpath": "$.clientLibrary.version"
+        },
+        {
+          "type": "json",
+          "path": "samples/generated_samples/snippet_metadata_google.cloud.orgpolicy.v2.json",
+          "jsonpath": "$.clientLibrary.version"
         }
       ]
     }
