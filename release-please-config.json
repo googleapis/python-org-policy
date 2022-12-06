@@ -5,6 +5,7 @@
       "release-type": "python",
       "extra-files": [
         "google/cloud/orgpolicy/gapic_version.py",
+        "google/cloud/orgpolicy_v2/gapic_version.py",
         {
           "type": "json",
           "path": "samples/generated_samples/snippet_metadata_orgpolicy_v2.json",
