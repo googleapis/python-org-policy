@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.9.0](https://github.com/googleapis/python-org-policy/compare/v1.8.3...v1.9.0) (2023-11-29)
+## [1.9.0rc1](https://github.com/googleapis/python-org-policy/compare/v1.8.3...v1.9.0rc1) (2023-11-29)
 
 
 ### Features
