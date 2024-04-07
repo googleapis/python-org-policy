@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.1](https://github.com/googleapis/python-org-policy/compare/v1.11.0...v1.11.1) (2024-04-07)
+
+
+### Documentation
+
+* Fix docs session ([#284](https://github.com/googleapis/python-org-policy/issues/284)) ([570a06e](https://github.com/googleapis/python-org-policy/commit/570a06e3b174eb28ace5d7d4a1595d2e81791dc0))
+
 ## [1.11.0](https://github.com/googleapis/python-org-policy/compare/v1.10.0...v1.11.0) (2024-03-28)
 
 
