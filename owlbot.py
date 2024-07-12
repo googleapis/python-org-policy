@@ -69,6 +69,7 @@ templated_files = gcp.CommonTemplates().py_library(
     microgenerator=True,
     versions=gcp.common.detect_versions(path="./google", default_first=True),
 )
+
 s.move(
     templated_files,
     excludes=[
@@ -76,6 +77,7 @@ s.move(
         ".github/release-please.yml",
         "noxfile.py",
         ".github/workflows/unittest.yml",
+        ".github/workflows/docs.yml"
     ],
 )
 
