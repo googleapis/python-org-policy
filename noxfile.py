@@ -28,11 +28,8 @@ import nox
 BLACK_VERSION = "black==22.3.0"
 ISORT_VERSION = "isort==5.10.1"
 
-# NOTE: Pin the version of grpcio-tools to 1.48.2 for compatibility with
-# Protobuf 3.19.5. Please ensure that the minimum required version of
-# protobuf in setup.py is compatible with the pb2 files generated
-# by grpcio-tools before changing the pinned version below.
-GRPCIO_TOOLS_VERSION = "grpcio-tools==1.48.2"
+# `grpcio-tools` 1.59.0 or newer is required for protobuf 5.x compatibility.
+GRPCIO_TOOLS_VERSION = "grpcio-tools==1.59.0"
 
 LINT_PATHS = ["docs", "google", "tests", "noxfile.py", "setup.py"]
 
@@ -385,9 +382,16 @@ def docfx(session):
     )
 
 
-@nox.session(python=SYSTEM_TEST_PYTHON_VERSIONS)
-def prerelease_deps(session):
+@nox.session(python="3.12")
+@nox.parametrize(
+    "protobuf_implementation",
+    ["python", "upb", "cpp"],
+)
+def prerelease_deps(session, protobuf_implementation):
     """Run all tests with prerelease versions of dependencies installed."""
+
+    if protobuf_implementation == "cpp" and session.python in ("3.11", "3.12"):
+        session.skip("cpp implementation is not supported in python 3.11+")
 
     # Install all dependencies
     session.install("-e", ".[all, tests, tracing]")
@@ -425,10 +429,12 @@ def prerelease_deps(session):
         "protobuf",
         # dependency of grpc
         "six",
+        "grpc-google-iam-v1",
         "googleapis-common-protos",
         "grpcio",
         "grpcio-status",
         "google-api-core",
+        "google-auth",
         "proto-plus",
         "google-cloud-testutils",
         # dependencies of google-cloud-testutils"
@@ -441,7 +447,6 @@ def prerelease_deps(session):
     # Remaining dependencies
     other_deps = [
         "requests",
-        "google-auth",
     ]
     session.install(*other_deps)
 
@@ -450,26 +455,58 @@ def prerelease_deps(session):
         "python", "-c", "import google.protobuf; print(google.protobuf.__version__)"
     )
     session.run("python", "-c", "import grpc; print(grpc.__version__)")
+    session.run("python", "-c", "import google.auth; print(google.auth.__version__)")
 
-    session.run("py.test", "tests/unit")
+    session.run(
+        "py.test",
+        "tests/unit",
+        env={
+            "PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION": protobuf_implementation,
+        },
+    )
 
-    system_test_path = os.path.join("tests", "system.py")
-    system_test_folder_path = os.path.join("tests", "system")
 
-    # Only run system tests if found.
-    if os.path.exists(system_test_path):
+@nox.session(python=UNIT_TEST_PYTHON_VERSIONS)
+@nox.parametrize(
+    "library,prerelease,protobuf_implementation",
+    [
+        (("google-cloud-python", "google-cloud-asset"), False, "python"),
+        (("google-cloud-python", "google-cloud-asset"), False, "upb"),
+        (("google-cloud-python", "google-cloud-asset"), False, "cpp"),
+    ],
+)
+def unit_remote(session, library, prerelease, protobuf_implementation):
+    """Run tests from a downstream libraries.
+
+    To verify that any changes we make here will not break downstream libraries, clone
+    a few and run their unit and system tests.
+
+    NOTE: The unit and system test functions above are copied from the templates.
+    They will need to be updated when the templates change.
+
+    * Pub/Sub: GAPIC with handwritten layer.
+    * Speech: Full GAPIC, has long running operations.
+    """
+
+    if protobuf_implementation == "cpp" and session.python in ("3.11", "3.12"):
+        session.skip("cpp implementation is not supported in python 3.11+")
+
+    repository, package = library
+    try:
+        session.run("git", "-C", repository, "pull", external=True)
+    except nox.command.CommandFailed:
         session.run(
-            "py.test",
-            "--verbose",
-            f"--junitxml=system_{session.python}_sponge_log.xml",
-            system_test_path,
-            *session.posargs,
+            "git",
+            "clone",
+            "--single-branch",
+            f"https://github.com/googleapis/{repository}",
+            external=True,
         )
-    if os.path.exists(system_test_folder_path):
-        session.run(
-            "py.test",
-            "--verbose",
-            f"--junitxml=system_{session.python}_sponge_log.xml",
-            system_test_folder_path,
-            *session.posargs,
-        )
+
+    unit(
+        session=session,
+        repository=repository,
+        package=package,
+        prerelease=prerelease,
+        protobuf_implementation=protobuf_implementation,
+    )
