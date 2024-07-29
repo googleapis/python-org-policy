@@ -503,10 +503,106 @@ def unit_remote(session, library, prerelease, protobuf_implementation):
             external=True,
         )
 
-    unit(
-        session=session,
-        repository=repository,
-        package=package,
-        prerelease=prerelease,
-        protobuf_implementation=protobuf_implementation,
+    downstream_dir = repository
+    if package:
+        downstream_dir = f"{repository}/packages/{package}"
+
+    # Install all test dependencies, then install this package in-place.
+    session.install("asyncmock", "pytest-asyncio")
+
+    # Pin mock due to https://github.com/googleapis/python-pubsub/issues/840
+    session.install("mock==5.0.0", "pytest", "pytest-cov")
+
+    install_command = ["-e", f"{CURRENT_DIRECTORY}/{downstream_dir}"]
+
+    if prerelease:
+        install_prerelease_dependencies(
+            session,
+            f"{CURRENT_DIRECTORY}/{downstream_dir}/testing/constraints-{UNIT_TEST_PYTHON_VERSIONS[0]}.txt",
+        )
+        # Use the `--no-deps` options to allow pre-release versions of dependencies to be installed
+        install_command.extend(["--no-deps"])
+    else:
+        # Install the pinned dependencies in constraints file
+        install_command.extend(
+            [
+                "-c",
+                f"{CURRENT_DIRECTORY}/{downstream_dir}/testing/constraints-{session.python}.txt",
+            ]
+        )
+
+    # These *must* be the last 3 install commands to get the packages from source.
+    session.install(*install_command)
+
+    # Remove the 'cpp' implementation once support for Protobuf 3.x is dropped.
+    # The 'cpp' implementation requires Protobuf<4.
+    if protobuf_implementation == "cpp":
+        session.install("protobuf<4")
+
+    # Install this library from source
+    session.install(CURRENT_DIRECTORY, "--no-deps")
+
+    # Print out package versions of dependencies
+    session.run(
+        "python", "-c", "import google.protobuf; print(google.protobuf.__version__)"
     )
+    session.run("python", "-c", "import grpc; print(grpc.__version__)")
+    session.run("python", "-c", "import google.auth; print(google.auth.__version__)")
+
+    session.run(
+        "python", "-c", "import google.api_core; print(google.api_core.__version__)"
+    )
+
+    # Run py.test against the unit tests in the downstream repository
+    with session.chdir(downstream_dir):
+        # Run py.test against the unit tests.
+        session.run(
+            "py.test",
+            "--quiet",
+            "--cov=google/cloud",
+            "--cov=tests/unit",
+            "--cov-append",
+            "--cov-config=.coveragerc",
+            "--cov-report=",
+            "--cov-fail-under=0",
+            os.path.join("tests", "unit"),
+            *session.posargs,
+            env={
+                "PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION": protobuf_implementation,
+            },
+        )
+
+
+def install_prerelease_dependencies(session, constraints_path):
+    with open(constraints_path, encoding="utf-8") as constraints_file:
+        constraints_text = constraints_file.read()
+        # Ignore leading whitespace and comment lines.
+        constraints_deps = [
+            match.group(1)
+            for match in re.finditer(
+                r"^\s*(\S+)(?===\S+)", constraints_text, flags=re.MULTILINE
+            )
+        ]
+        session.install(*constraints_deps)
+        prerel_deps = [
+            "googleapis-common-protos",
+            "protobuf",
+            "six",
+            "grpcio",
+            "grpcio-status",
+            "google-api-core",
+            "google-auth",
+            "proto-plus",
+            "google-cloud-testutils",
+            # dependencies of google-cloud-testutils"
+            "click",
+        ]
+
+        for dep in prerel_deps:
+            session.install("--pre", "--no-deps", "--upgrade", dep)
+
+        # Remaining dependencies
+        other_deps = [
+            "requests",
+        ]
+        session.install(*other_deps)
