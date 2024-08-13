@@ -545,7 +545,9 @@ def unit_remote(session, library, prerelease, protobuf_implementation):
             "python", "-c", "import google.protobuf; print(google.protobuf.__version__)"
         )
         session.run("python", "-c", "import grpc; print(grpc.__version__)")
-        session.run("python", "-c", "import google.auth; print(google.auth.__version__)")
+        session.run(
+            "python", "-c", "import google.auth; print(google.auth.__version__)"
+        )
 
         session.run(
             "python", "-c", "import google.api_core; print(google.api_core.__version__)"
