@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.11.1](https://github.com/googleapis/python-org-policy/compare/v1.11.0...v1.11.1) (2024-08-13)
+## [1.11.1rc1](https://github.com/googleapis/python-org-policy/compare/v1.11.0...v1.11.1rc1) (2024-08-13)
 
 
 ### Bug Fixes
