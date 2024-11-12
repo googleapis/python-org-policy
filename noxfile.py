@@ -384,7 +384,7 @@ def docfx(session):
     )
 
 
-@nox.session(python="3.12")
+@nox.session(python="3.13")
 @nox.parametrize(
     "protobuf_implementation",
     ["python", "upb", "cpp"],
@@ -392,7 +392,7 @@ def docfx(session):
 def prerelease_deps(session, protobuf_implementation):
     """Run all tests with prerelease versions of dependencies installed."""
 
-    if protobuf_implementation == "cpp" and session.python in ("3.11", "3.12"):
+    if protobuf_implementation == "cpp" and session.python in ("3.11", "3.12", "3.13"):
         session.skip("cpp implementation is not supported in python 3.11+")
 
     # Install all dependencies
@@ -489,7 +489,7 @@ def unit_remote(session, library, prerelease, protobuf_implementation):
     * Asset: GAPIC which uses google-cloud-org-policy
     """
 
-    if protobuf_implementation == "cpp" and session.python in ("3.11", "3.12"):
+    if protobuf_implementation == "cpp" and session.python in ("3.11", "3.12", "3.13"):
         session.skip("cpp implementation is not supported in python 3.11+")
 
     repository, package = library
